@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long Min = sc.nextLong();
+        long Max = sc.nextLong();
+        sc.close(); // Scanner 객체를 닫아 메모리 누수를 방지합니다.
+
+        // 소수 여부를 저장할 배열을 초기화합니다.
+        boolean[] isPrime = new boolean[10000001];
+        for (int i = 2; i < isPrime.length; i++) {
+            isPrime[i] = true; // 모든 수를 처음에는 소수로 가정합니다.
+        }
+
+        // 에라토스테네스의 체 알고리즘을 사용하여 소수를 구합니다.
+        for (int i = 2; i <= Math.sqrt(isPrime.length - 1); i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j < isPrime.length; j += i) {
+                    isPrime[j] = false; // 소수가 아닌 수들을 걸러냅니다.
+                }
+            }
+        }
+
+        int count = 0;
+        // 소수의 거듭제곱이 주어진 범위 내에 있는지 확인합니다.
+        for (int i = 2; i < isPrime.length; i++) {
+            if (isPrime[i]) {
+                long prime = i;
+                long power = prime * prime; // 소수의 첫 번째 거듭제곱 (제곱)
+                while (power <= Max) { // 거듭제곱이 Max를 넘지 않는 동안 반복
+                    if (power >= Min) {
+                        count++; // Min과 Max 사이에 있는 거의 소수를 카운트합니다.
+                    }
+                    if (power > Max / prime) break; // 오버플로 방지
+                    power *= prime; // 다음 거듭제곱으로 진행합니다.
+                }
+            }
+        }
+        System.out.println(count); // 결과를 출력합니다.
+    }
+}
