@@ -4,27 +4,27 @@ import java.util.Scanner;
 
 public class M1016 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        long Min = sc.nextLong();
-        long Max = sc.nextLong();
+        Scanner sc = new Scanner(System.in); // 입력을 받기 위해 Scanner 객체 생성
+        long Min = sc.nextLong(); // 최소값 입력
+        long Max = sc.nextLong(); // 최대값 입력
 
-        boolean[] Check = new boolean[(int)(Max - Min + 1)];
+        boolean[] Check = new boolean[(int)(Max - Min + 1)]; // Min과 Max 사이의 수를 체크할 배열
 
-        for (long i = 2; i * i <= Max; i++) {
-            long pow = i * i;
-            long start_index = Min / pow;
-            if (Min % pow != 0)
+        for (long i = 2; i * i <= Max; i++) { // 2부터 시작하여 제곱수가 Max보다 작거나 같은 수를 찾기 위한 반복문
+            long pow = i * i; // i의 제곱수
+            long start_index = Min / pow; // Min부터 시작하여 pow로 나눈 몫을 시작 인덱스로 설정
+            if (Min % pow != 0) // Min이 pow로 나누어 떨어지지 않으면 시작 인덱스를 1 증가
                 start_index++;
-            for (long j = start_index; pow * j <= Max; j++) {
-                Check[(int) ((j * pow) - Min)] = true;
+            for (long j = start_index; pow * j <= Max; j++) { // pow * j가 Max보다 작거나 같은 동안 반복
+                Check[(int) ((j * pow) - Min)] = true; // pow * j가 있는 위치를 true로 설정
             }
         }
-        int count = 0;
-        for (int i = 0; i <= Max - Min; i++) {
-            if (!Check[i]) {
-                count++;
+        int count = 0; // 제곱수가 아닌 수를 세기 위한 변수
+        for (int i = 0; i <= Max - Min; i++) { // Min부터 Max까지 반복
+            if (!Check[i]) { // Check 배열에서 false인 값을 찾기
+                count++; // false이면 count 증가
             }
         }
-        System.out.println(count);
+        System.out.println(count); // 최종 결과 출력
     }
 }
