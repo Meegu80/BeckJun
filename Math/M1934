@@ -1,4 +1,5 @@
 import java.util.Scanner;
+// 최소 공배수 구하기
 // 처음 입력하는 수는 실시 횟수를, 두번째 입력할 때는 두개의 수를 공백을 줘서 한번에 입력한다.
 
 public class M1934 {
