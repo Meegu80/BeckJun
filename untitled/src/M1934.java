@@ -1,2 +1,21 @@
-package PACKAGE_NAME;public class M1934 {
+import java.util.Scanner;
+// 처음 입력하는 수는 실시 횟수를, 두번째 입력할 때는 두개의 수를 공백을 줘서 한번에 입력한다.
+
+public class M1934 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in); // Scanner를 사용하여 입력을 받기 위해 초기화
+        int t = sc.nextInt(); // 테스트 케이스의 수를 입력받음
+        for (int i = 0; i < t; i++) {  // 주어진 테스트 케이스 수만큼 반복
+            int a = sc.nextInt(); // 첫 번째 정수를 입력받음
+            int b = sc.nextInt(); // 두 번째 정수를 입력받음
+            int result = a * b / gcd(a, b); // 두 수의 최소공배수를 계산
+            System.out.println(result); // 계산된 최소공배수를 출력
+        }
+    }
+    public static int gcd(int a, int b) { // 최대공약수를 계산하는 함수
+        if (b == 0) { // b가 0이면 a가 최대공약수
+            return a;
+        }
+        return gcd(b, a % b); // 재귀적으로 gcd를 계산
+    }
 }
