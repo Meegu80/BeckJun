@@ -1,5 +1,5 @@
 package javalab.ch01;
-
+// 오큰수 구하기 백준문제 17298번
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
