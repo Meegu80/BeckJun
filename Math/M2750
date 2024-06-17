@@ -1,5 +1,5 @@
 package javalab.ch01;
-
+//버블정렬을 이용한 오름차순 정렬
 import java.util.Scanner;
 
 public class M2750 {
