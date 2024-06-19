@@ -1,0 +1,81 @@
+import java.io.BufferedReader; // BufferedReader를 가져옴
+import java.io.IOException; // IOException을 가져옴
+import java.io.InputStreamReader; // InputStreamReader를 가져옴
+import java.util.Arrays; // Arrays를 가져옴
+
+class mData implements Comparable<mData> { // mData 클래스 정의 및 Comparable 인터페이스 구현
+    int value; // 정수형 변수 value 선언
+    int index; // 정수형 변수 index 선언
+
+    public mData(int value, int index) { // mData 생성자 정의
+        this.value = value; // value 초기화
+        this.index = index; // index 초기화
+    }
+
+    @Override
+    public int compareTo(mData o) { // compareTo 메서드 오버라이드
+        return this.value - o.value; // value 값을 기준으로 비교
+    }
+}
+
+public class Main { // Main 클래스 정의
+    public static void main(String[] args) throws IOException { // main 메서드 정의 및 IOException 처리
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // BufferedReader 객체 생성
+        int n = Integer.parseInt(br.readLine()); // 첫 줄을 읽어 정수 n으로 변환
+        mData[] arr = new mData[n]; // mData 배열 생성
+        for (int i = 0; i < n; i++) { // n번 반복
+            arr[i] = new mData(Integer.parseInt(br.readLine()), i); // mData 객체를 생성하여 배열에 삽입
+        }
+        br.close(); // BufferedReader 닫기
+        Arrays.sort(arr); // 배열 정렬
+        int max = 0; // 정수형 변수 max 초기화
+
+        for (int i = 0; i < n; i++) { // n번 반복
+            if (max < arr[i].index - i) { // max와 arr[i].index - i 비교
+                max = arr[i].index - i; // max 갱신
+            }
+        }
+        System.out.println(max + 1); // 결과 출력
+    }
+}
+
+// 메모리 문제만 없다면 아래도 답안 가능 (버블소트)
+/*
+package javalab.ch01.Sort;
+
+import java.util.Scanner;
+
+public class M2750 {
+    public static void main(String[] args) {
+        // Scanner 객체를 사용하여 입력을 받음
+        Scanner scanner = new Scanner(System.in);
+
+        // 입력된 첫 줄을 정수 N으로 변환
+        int N = scanner.nextInt();
+
+        // 정수 배열 A 생성
+        int[] A = new int[N];
+
+        // 배열 A에 데이터를 입력
+        for(int i = 0; i < N; i++){
+            A[i] = scanner.nextInt();
+        }
+
+        // 버블 소트를 사용하여 배열 A를 정렬
+        for(int i = 0; i < N - 1; i++){
+            for(int j = 0; j < N - 1 - i; j++){
+                if(A[j] > A[j + 1]){
+                    int temp = A[j];
+                    A[j] = A[j + 1];
+                    A[j + 1] = temp;
+                }
+            }
+        }
+
+        // 정렬된 배열을 출력
+        for (int i = 0; i < N; i++) {
+            System.out.println(A[i]);
+        }
+    }
+}
+*/
