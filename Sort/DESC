@@ -1,0 +1,32 @@
+//내림차순 정렬, 각자리수가 하나의 수로 보고 1234 입력하면 4321로 정렬
+package javalab.ch01.Sort; // 패키지 선언
+
+import java.util.Scanner; // Scanner 클래스를 사용하기 위해 import
+
+public class M1427 { // M1427 클래스 정의
+    public static void main(String[] args) { // main 메서드 정의
+        Scanner sc = new Scanner(System.in); // Scanner 객체 생성하여 입력받기
+        String str = sc.next(); // 문자열로 입력받기
+        int[] A =  new int[str.length()]; // 입력된 문자열의 길이만큼 정수 배열 생성
+        for (int i = 0; i < str.length(); i++) { // 문자열 길이만큼 반복
+            A[i] = Integer.parseInt(str.substring(i, i + 1)); // 각 문자를 정수로 변환하여 배열에 저장
+        }
+
+        for (int i = 0; i < str.length(); i++) { // 문자열 길이만큼 반복
+            int Max = i; // 최대값 인덱스를 현재 인덱스로 초기화
+            for (int j = i + 1; j < str.length(); j++) { // 현재 인덱스 다음부터 문자열 길이만큼 반복
+                if (A[j] > A[Max]) // 현재 최대값보다 큰 값을 찾으면
+                    Max = j; // 최대값 인덱스를 갱신
+            }
+            if (A[i] < A[Max]) { // 현재 인덱스의 값이 최대값보다 작으면
+                int temp = A[i]; // 두 값을 교환
+                A[i] = A[Max];
+                A[Max] = temp;
+            }
+        }
+
+        for (int i = 0; i < str.length(); i++) { // 정렬된 배열을 출력
+            System.out.print(A[i]); // 배열의 각 요소를 출력
+        }
+    }
+}
