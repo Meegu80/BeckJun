@@ -1,4 +1,4 @@
-//내림차순 정렬, 각자리수가 하나의 수로 보고 1234 입력하면 4321로 정렬
+//선택정렬, 내림차순 정렬, 각자리수가 하나의 수로 보고 1234 입력하면 4321로 정렬
 package javalab.ch01.Sort; // 패키지 선언
 
 import java.util.Scanner; // Scanner 클래스를 사용하기 위해 import
