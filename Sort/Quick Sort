@@ -1,0 +1,31 @@
+# 백준 문제 11004번
+# 퀵 정렬을 이용해 오름차순 후, N번째 있는 수를 구하는 코드 
+
+package javalab.ch01.Sort; // 패키지 선언
+
+import java.io.*; // 입출력 관련 클래스 임포트
+import java.util.*; // 유틸리티 클래스 임포트
+
+public class M11004 { // 클래스 선언
+
+    public static void main(String[] args) throws Exception { // 메인 메소드 및 예외 처리 선언
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // 입력을 받기 위한 BufferedReader 객체 생성
+
+        StringTokenizer st = new StringTokenizer(br.readLine()); // 첫 번째 줄 입력을 공백으로 구분하여 토큰화
+        int N = Integer.parseInt(st.nextToken()); // 배열의 크기 N을 입력받음
+        int K = Integer.parseInt(st.nextToken()); // K번째 수를 입력받음
+
+//		int[] A = new int[N]; // 풀이 3: 정수 배열을 사용하여 풀이
+//		List<Integer> A = new LinkedList<>(); // 풀이 2: LinkedList를 사용하여 풀이
+        List<Integer> A = new ArrayList<>(); // 풀이 1: ArrayList를 사용하여 풀이
+
+        st = new StringTokenizer(br.readLine()); // 두 번째 줄 입력을 공백으로 구분하여 토큰화
+        for (int i = 0; i < N; i++) { // N개의 정수를 읽어서 리스트 A에 추가
+            A.add(Integer.parseInt(st.nextToken()));
+        }
+
+        Collections.sort(A); // 리스트 A를 오름차순으로 정렬
+
+        System.out.println(A.get(K-1)); // K번째 수를 출력
+    }
+}
